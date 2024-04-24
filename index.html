@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    pre {
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <pre id="placeholder"></pre>
+  <script type="module">
+    const placeholder = document.querySelector('#placeholder')
+
+    console.log('Base URL:', import.meta.env.VITE_BASE_URL)
+
+    const response = await fetch(`${import.meta.env.VITE_BASE_URL}/data`)
+    if (response.ok) {
+      const data = await response.json()
+      placeholder.innerText = JSON.stringify(data, null, 2)
+    }
+  </script>
+</body>
+</html>
